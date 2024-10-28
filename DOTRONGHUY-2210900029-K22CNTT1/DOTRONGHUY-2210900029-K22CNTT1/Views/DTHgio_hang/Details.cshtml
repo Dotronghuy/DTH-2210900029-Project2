@@ -1,0 +1,34 @@
+﻿@model DOTRONGHUY_2210900029_K22CNTT1.Models.gio_hang
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>gio_hang</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_tao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_tao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.khach_hang.ho_ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.khach_hang.ho_ten)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ma_gio_hang }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

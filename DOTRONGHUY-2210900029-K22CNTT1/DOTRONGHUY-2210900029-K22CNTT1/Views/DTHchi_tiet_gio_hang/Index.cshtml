@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DOTRONGHUY_2210900029_K22CNTT1.Models.chi_tiet_gio_hang>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.so_luong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gio_hang.ma_gio_hang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.danh_muc_xe_hoi.ten_xe)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.so_luong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gio_hang.ma_gio_hang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.danh_muc_xe_hoi.ten_xe)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,66 @@
+﻿@model DOTRONGHUY_2210900029_K22CNTT1.Models.thanh_toan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>thanh_toan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ngay_thanh_toan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngay_thanh_toan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tong_tien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tong_tien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phuong_thuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phuong_thuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trang_thai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trang_thai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mo_ta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mo_ta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.don_hang.ma_dh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.don_hang.ma_dh)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ma_thanh_toan }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

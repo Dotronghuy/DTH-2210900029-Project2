@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DOTRONGHUY_CNTT1_2210900029_Project2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="chi_tiet_gio_hang">
+          <Key>
+            <PropertyRef Name="ma_gio_hang" />
+            <PropertyRef Name="ma_xe" />
+          </Key>
+          <Property Name="ma_gio_hang" Type="int" Nullable="false" />
+          <Property Name="ma_xe" Type="int" Nullable="false" />
+          <Property Name="so_luong" Type="int" />
+        </EntityType>
+        <EntityType Name="danh_muc_xe_hoi">
+          <Key>
+            <PropertyRef Name="ma_xe" />
+          </Key>
+          <Property Name="ma_xe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_xe" Type="varchar" MaxLength="100" />
+          <Property Name="hang_xe" Type="varchar" MaxLength="50" />
+          <Property Name="gia_ban" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="mo_ta" Type="text" />
+          <Property Name="so_luong" Type="int" />
+        </EntityType>
+        <EntityType Name="don_hang">
+          <Key>
+            <PropertyRef Name="ma_dh" />
+          </Key>
+          <Property Name="ma_dh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_kh" Type="int" />
+          <Property Name="tong_tien" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ngay_dat" Type="datetime" />
+          <Property Name="trang_thai" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="gio_hang">
+          <Key>
+            <PropertyRef Name="ma_gio_hang" />
+          </Key>
+          <Property Name="ma_gio_hang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_kh" Type="int" />
+          <Property Name="ngay_tao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="khach_hang">
+          <Key>
+            <PropertyRef Name="ma_kh" />
+          </Key>
+          <Property Name="ma_kh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ho_ten" Type="varchar" MaxLength="100" />
+          <Property Name="tai_khoan" Type="varchar" MaxLength="50" />
+          <Property Name="mat_khau" Type="varchar" MaxLength="32" />
+          <Property Name="dia_chi" Type="varchar" MaxLength="200" />
+          <Property Name="dien_thoai" Type="varchar" MaxLength="10" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="ngay_sinh" Type="datetime" />
+          <Property Name="ngay_cap_nhat" Type="datetime" />
+          <Property Name="gioi_tinh" Type="tinyint" />
+          <Property Name="tich_diem" Type="int" />
+          <Property Name="trang_thai" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="quan_tri">
+          <Key>
+            <PropertyRef Name="tai_khoan" />
+          </Key>
+          <Property Name="tai_khoan" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mat_khau" Type="varchar" MaxLength="32" />
+          <Property Name="trang_thai" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="thanh_toan">
+          <Key>
+            <PropertyRef Name="ma_thanh_toan" />
+          </Key>
+          <Property Name="ma_thanh_toan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_dh" Type="int" />
+          <Property Name="ngay_thanh_toan" Type="datetime" />
+          <Property Name="tong_tien" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="phuong_thuc" Type="varchar" MaxLength="50" />
+          <Property Name="trang_thai" Type="tinyint" />
+          <Property Name="mo_ta" Type="text" />
+        </EntityType>
+        <Association Name="FK__chi_tiet___ma_gi__1FCDBCEB">
+          <End Role="gio_hang" Type="Self.gio_hang" Multiplicity="1" />
+          <End Role="chi_tiet_gio_hang" Type="Self.chi_tiet_gio_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gio_hang">
+              <PropertyRef Name="ma_gio_hang" />
+            </Principal>
+            <Dependent Role="chi_tiet_gio_hang">
+              <PropertyRef Name="ma_gio_hang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chi_tiet___ma_xe__20C1E124">
+          <End Role="danh_muc_xe_hoi" Type="Self.danh_muc_xe_hoi" Multiplicity="1" />
+          <End Role="chi_tiet_gio_hang" Type="Self.chi_tiet_gio_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="danh_muc_xe_hoi">
+              <PropertyRef Name="ma_xe" />
+            </Principal>
+            <Dependent Role="chi_tiet_gio_hang">
+              <PropertyRef Name="ma_xe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__don_hang__ma_kh__173876EA">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="0..1" />
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="ma_kh" />
+            </Principal>
+            <Dependent Role="don_hang">
+              <PropertyRef Name="ma_kh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__gio_hang__ma_kh__1BFD2C07">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="0..1" />
+          <End Role="gio_hang" Type="Self.gio_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="ma_kh" />
+            </Principal>
+            <Dependent Role="gio_hang">
+              <PropertyRef Name="ma_kh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__thanh_toa__ma_dh__239E4DCF">
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="0..1" />
+          <End Role="thanh_toan" Type="Self.thanh_toan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="don_hang">
+              <PropertyRef Name="ma_dh" />
+            </Principal>
+            <Dependent Role="thanh_toan">
+              <PropertyRef Name="ma_dh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DOTRONGHUY_CNTT1_2210900029_Project2ModelStoreContainer">
+          <EntitySet Name="chi_tiet_gio_hang" EntityType="Self.chi_tiet_gio_hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="danh_muc_xe_hoi" EntityType="Self.danh_muc_xe_hoi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="don_hang" EntityType="Self.don_hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gio_hang" EntityType="Self.gio_hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khach_hang" EntityType="Self.khach_hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="quan_tri" EntityType="Self.quan_tri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="thanh_toan" EntityType="Self.thanh_toan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__chi_tiet___ma_gi__1FCDBCEB" Association="Self.FK__chi_tiet___ma_gi__1FCDBCEB">
+            <End Role="gio_hang" EntitySet="gio_hang" />
+            <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chi_tiet___ma_xe__20C1E124" Association="Self.FK__chi_tiet___ma_xe__20C1E124">
+            <End Role="danh_muc_xe_hoi" EntitySet="danh_muc_xe_hoi" />
+            <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__don_hang__ma_kh__173876EA" Association="Self.FK__don_hang__ma_kh__173876EA">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="don_hang" EntitySet="don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__gio_hang__ma_kh__1BFD2C07" Association="Self.FK__gio_hang__ma_kh__1BFD2C07">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="gio_hang" EntitySet="gio_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__thanh_toa__ma_dh__239E4DCF" Association="Self.FK__thanh_toa__ma_dh__239E4DCF">
+            <End Role="don_hang" EntitySet="don_hang" />
+            <End Role="thanh_toan" EntitySet="thanh_toan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DOTRONGHUY_CNTT1_2210900029_Project2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="chi_tiet_gio_hang">
+          <Key>
+            <PropertyRef Name="ma_gio_hang" />
+            <PropertyRef Name="ma_xe" />
+          </Key>
+          <Property Name="ma_gio_hang" Type="Int32" Nullable="false" />
+          <Property Name="ma_xe" Type="Int32" Nullable="false" />
+          <Property Name="so_luong" Type="Int32" />
+          <NavigationProperty Name="gio_hang" Relationship="Self.FK__chi_tiet___ma_gi__1FCDBCEB" FromRole="chi_tiet_gio_hang" ToRole="gio_hang" />
+          <NavigationProperty Name="danh_muc_xe_hoi" Relationship="Self.FK__chi_tiet___ma_xe__20C1E124" FromRole="chi_tiet_gio_hang" ToRole="danh_muc_xe_hoi" />
+        </EntityType>
+        <EntityType Name="danh_muc_xe_hoi">
+          <Key>
+            <PropertyRef Name="ma_xe" />
+          </Key>
+          <Property Name="ma_xe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_xe" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="hang_xe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gia_ban" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="mo_ta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="so_luong" Type="Int32" />
+          <NavigationProperty Name="chi_tiet_gio_hang" Relationship="Self.FK__chi_tiet___ma_xe__20C1E124" FromRole="danh_muc_xe_hoi" ToRole="chi_tiet_gio_hang" />
+        </EntityType>
+        <EntityType Name="don_hang">
+          <Key>
+            <PropertyRef Name="ma_dh" />
+          </Key>
+          <Property Name="ma_dh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_kh" Type="Int32" />
+          <Property Name="tong_tien" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ngay_dat" Type="DateTime" Precision="3" />
+          <Property Name="trang_thai" Type="Byte" />
+          <NavigationProperty Name="khach_hang" Relationship="Self.FK__don_hang__ma_kh__173876EA" FromRole="don_hang" ToRole="khach_hang" />
+          <NavigationProperty Name="thanh_toan" Relationship="Self.FK__thanh_toa__ma_dh__239E4DCF" FromRole="don_hang" ToRole="thanh_toan" />
+        </EntityType>
+        <EntityType Name="gio_hang">
+          <Key>
+            <PropertyRef Name="ma_gio_hang" />
+          </Key>
+          <Property Name="ma_gio_hang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_kh" Type="Int32" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="chi_tiet_gio_hang" Relationship="Self.FK__chi_tiet___ma_gi__1FCDBCEB" FromRole="gio_hang" ToRole="chi_tiet_gio_hang" />
+          <NavigationProperty Name="khach_hang" Relationship="Self.FK__gio_hang__ma_kh__1BFD2C07" FromRole="gio_hang" ToRole="khach_hang" />
+        </EntityType>
+        <EntityType Name="khach_hang">
+          <Key>
+            <PropertyRef Name="ma_kh" />
+          </Key>
+          <Property Name="ma_kh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ho_ten" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tai_khoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mat_khau" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="dia_chi" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="dien_thoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ngay_sinh" Type="DateTime" Precision="3" />
+          <Property Name="ngay_cap_nhat" Type="DateTime" Precision="3" />
+          <Property Name="gioi_tinh" Type="Byte" />
+          <Property Name="tich_diem" Type="Int32" />
+          <Property Name="trang_thai" Type="Byte" />
+          <NavigationProperty Name="don_hang" Relationship="Self.FK__don_hang__ma_kh__173876EA" FromRole="khach_hang" ToRole="don_hang" />
+          <NavigationProperty Name="gio_hang" Relationship="Self.FK__gio_hang__ma_kh__1BFD2C07" FromRole="khach_hang" ToRole="gio_hang" />
+        </EntityType>
+        <EntityType Name="quan_tri">
+          <Key>
+            <PropertyRef Name="tai_khoan" />
+          </Key>
+          <Property Name="tai_khoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mat_khau" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="trang_thai" Type="Byte" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="thanh_toan">
+          <Key>
+            <PropertyRef Name="ma_thanh_toan" />
+          </Key>
+          <Property Name="ma_thanh_toan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_dh" Type="Int32" />
+          <Property Name="ngay_thanh_toan" Type="DateTime" Precision="3" />
+          <Property Name="tong_tien" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="phuong_thuc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="trang_thai" Type="Byte" />
+          <Property Name="mo_ta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="don_hang" Relationship="Self.FK__thanh_toa__ma_dh__239E4DCF" FromRole="thanh_toan" ToRole="don_hang" />
+        </EntityType>
+        <Association Name="FK__chi_tiet___ma_gi__1FCDBCEB">
+          <End Role="gio_hang" Type="Self.gio_hang" Multiplicity="1" />
+          <End Role="chi_tiet_gio_hang" Type="Self.chi_tiet_gio_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gio_hang">
+              <PropertyRef Name="ma_gio_hang" />
+            </Principal>
+            <Dependent Role="chi_tiet_gio_hang">
+              <PropertyRef Name="ma_gio_hang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chi_tiet___ma_xe__20C1E124">
+          <End Role="danh_muc_xe_hoi" Type="Self.danh_muc_xe_hoi" Multiplicity="1" />
+          <End Role="chi_tiet_gio_hang" Type="Self.chi_tiet_gio_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="danh_muc_xe_hoi">
+              <PropertyRef Name="ma_xe" />
+            </Principal>
+            <Dependent Role="chi_tiet_gio_hang">
+              <PropertyRef Name="ma_xe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__don_hang__ma_kh__173876EA">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="0..1" />
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="ma_kh" />
+            </Principal>
+            <Dependent Role="don_hang">
+              <PropertyRef Name="ma_kh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__thanh_toa__ma_dh__239E4DCF">
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="0..1" />
+          <End Role="thanh_toan" Type="Self.thanh_toan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="don_hang">
+              <PropertyRef Name="ma_dh" />
+            </Principal>
+            <Dependent Role="thanh_toan">
+              <PropertyRef Name="ma_dh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__gio_hang__ma_kh__1BFD2C07">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="0..1" />
+          <End Role="gio_hang" Type="Self.gio_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="ma_kh" />
+            </Principal>
+            <Dependent Role="gio_hang">
+              <PropertyRef Name="ma_kh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DOTRONGHUY_CNTT1_2210900029_Project2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="chi_tiet_gio_hang" EntityType="Self.chi_tiet_gio_hang" />
+          <EntitySet Name="danh_muc_xe_hoi" EntityType="Self.danh_muc_xe_hoi" />
+          <EntitySet Name="don_hang" EntityType="Self.don_hang" />
+          <EntitySet Name="gio_hang" EntityType="Self.gio_hang" />
+          <EntitySet Name="khach_hang" EntityType="Self.khach_hang" />
+          <EntitySet Name="quan_tri" EntityType="Self.quan_tri" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="thanh_toan" EntityType="Self.thanh_toan" />
+          <AssociationSet Name="FK__chi_tiet___ma_gi__1FCDBCEB" Association="Self.FK__chi_tiet___ma_gi__1FCDBCEB">
+            <End Role="gio_hang" EntitySet="gio_hang" />
+            <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chi_tiet___ma_xe__20C1E124" Association="Self.FK__chi_tiet___ma_xe__20C1E124">
+            <End Role="danh_muc_xe_hoi" EntitySet="danh_muc_xe_hoi" />
+            <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__don_hang__ma_kh__173876EA" Association="Self.FK__don_hang__ma_kh__173876EA">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="don_hang" EntitySet="don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__thanh_toa__ma_dh__239E4DCF" Association="Self.FK__thanh_toa__ma_dh__239E4DCF">
+            <End Role="don_hang" EntitySet="don_hang" />
+            <End Role="thanh_toan" EntitySet="thanh_toan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__gio_hang__ma_kh__1BFD2C07" Association="Self.FK__gio_hang__ma_kh__1BFD2C07">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="gio_hang" EntitySet="gio_hang" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DOTRONGHUY_CNTT1_2210900029_Project2ModelStoreContainer" CdmEntityContainer="DOTRONGHUY_CNTT1_2210900029_Project2Entities">
+          <EntitySetMapping Name="chi_tiet_gio_hang">
+            <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.chi_tiet_gio_hang">
+              <MappingFragment StoreEntitySet="chi_tiet_gio_hang">
+                <ScalarProperty Name="ma_gio_hang" ColumnName="ma_gio_hang" />
+                <ScalarProperty Name="ma_xe" ColumnName="ma_xe" />
+                <ScalarProperty Name="so_luong" ColumnName="so_luong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="danh_muc_xe_hoi">
+            <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.danh_muc_xe_hoi">
+              <MappingFragment StoreEntitySet="danh_muc_xe_hoi">
+                <ScalarProperty Name="ma_xe" ColumnName="ma_xe" />
+                <ScalarProperty Name="ten_xe" ColumnName="ten_xe" />
+                <ScalarProperty Name="hang_xe" ColumnName="hang_xe" />
+                <ScalarProperty Name="gia_ban" ColumnName="gia_ban" />
+                <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+                <ScalarProperty Name="so_luong" ColumnName="so_luong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="don_hang">
+            <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.don_hang">
+              <MappingFragment StoreEntitySet="don_hang">
+                <ScalarProperty Name="ma_dh" ColumnName="ma_dh" />
+                <ScalarProperty Name="ma_kh" ColumnName="ma_kh" />
+                <ScalarProperty Name="tong_tien" ColumnName="tong_tien" />
+                <ScalarProperty Name="ngay_dat" ColumnName="ngay_dat" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gio_hang">
+            <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.gio_hang">
+              <MappingFragment StoreEntitySet="gio_hang">
+                <ScalarProperty Name="ma_gio_hang" ColumnName="ma_gio_hang" />
+                <ScalarProperty Name="ma_kh" ColumnName="ma_kh" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khach_hang">
+            <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.khach_hang">
+              <MappingFragment StoreEntitySet="khach_hang">
+                <ScalarProperty Name="ma_kh" ColumnName="ma_kh" />
+                <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
+                <ScalarProperty Name="tai_khoan" ColumnName="tai_khoan" />
+                <ScalarProperty Name="mat_khau" ColumnName="mat_khau" />
+                <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
+                <ScalarProperty Name="dien_thoai" ColumnName="dien_thoai" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="ngay_sinh" ColumnName="ngay_sinh" />
+                <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+                <ScalarProperty Name="gioi_tinh" ColumnName="gioi_tinh" />
+                <ScalarProperty Name="tich_diem" ColumnName="tich_diem" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quan_tri">
+            <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.quan_tri">
+              <MappingFragment StoreEntitySet="quan_tri">
+                <ScalarProperty Name="tai_khoan" ColumnName="tai_khoan" />
+                <ScalarProperty Name="mat_khau" ColumnName="mat_khau" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="thanh_toan">
+            <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.thanh_toan">
+              <MappingFragment StoreEntitySet="thanh_toan">
+                <ScalarProperty Name="ma_thanh_toan" ColumnName="ma_thanh_toan" />
+                <ScalarProperty Name="ma_dh" ColumnName="ma_dh" />
+                <ScalarProperty Name="ngay_thanh_toan" ColumnName="ngay_thanh_toan" />
+                <ScalarProperty Name="tong_tien" ColumnName="tong_tien" />
+                <ScalarProperty Name="phuong_thuc" ColumnName="phuong_thuc" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+                <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

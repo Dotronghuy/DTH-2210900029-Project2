@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DOTRONGHUY_CNTT1_2210900029_Project2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="chi_tiet_gio_hang">
+    <Key>
+      <PropertyRef Name="ma_gio_hang" />
+      <PropertyRef Name="ma_xe" />
+    </Key>
+    <Property Name="ma_gio_hang" Type="int" Nullable="false" />
+    <Property Name="ma_xe" Type="int" Nullable="false" />
+    <Property Name="so_luong" Type="int" />
+  </EntityType>
+  <EntityType Name="danh_muc_xe_hoi">
+    <Key>
+      <PropertyRef Name="ma_xe" />
+    </Key>
+    <Property Name="ma_xe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ten_xe" Type="varchar" MaxLength="100" />
+    <Property Name="hang_xe" Type="varchar" MaxLength="50" />
+    <Property Name="gia_ban" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="mo_ta" Type="text" />
+    <Property Name="so_luong" Type="int" />
+  </EntityType>
+  <EntityType Name="don_hang">
+    <Key>
+      <PropertyRef Name="ma_dh" />
+    </Key>
+    <Property Name="ma_dh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_kh" Type="int" />
+    <Property Name="tong_tien" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ngay_dat" Type="datetime" />
+    <Property Name="trang_thai" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="gio_hang">
+    <Key>
+      <PropertyRef Name="ma_gio_hang" />
+    </Key>
+    <Property Name="ma_gio_hang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_kh" Type="int" />
+    <Property Name="ngay_tao" Type="datetime" />
+  </EntityType>
+  <EntityType Name="khach_hang">
+    <Key>
+      <PropertyRef Name="ma_kh" />
+    </Key>
+    <Property Name="ma_kh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ho_ten" Type="varchar" MaxLength="100" />
+    <Property Name="tai_khoan" Type="varchar" MaxLength="50" />
+    <Property Name="mat_khau" Type="varchar" MaxLength="32" />
+    <Property Name="dia_chi" Type="varchar" MaxLength="200" />
+    <Property Name="dien_thoai" Type="varchar" MaxLength="10" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="ngay_sinh" Type="datetime" />
+    <Property Name="ngay_cap_nhat" Type="datetime" />
+    <Property Name="gioi_tinh" Type="tinyint" />
+    <Property Name="tich_diem" Type="int" />
+    <Property Name="trang_thai" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="quan_tri">
+    <Key>
+      <PropertyRef Name="tai_khoan" />
+    </Key>
+    <Property Name="tai_khoan" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="mat_khau" Type="varchar" MaxLength="32" />
+    <Property Name="trang_thai" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="thanh_toan">
+    <Key>
+      <PropertyRef Name="ma_thanh_toan" />
+    </Key>
+    <Property Name="ma_thanh_toan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_dh" Type="int" />
+    <Property Name="ngay_thanh_toan" Type="datetime" />
+    <Property Name="tong_tien" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="phuong_thuc" Type="varchar" MaxLength="50" />
+    <Property Name="trang_thai" Type="tinyint" />
+    <Property Name="mo_ta" Type="text" />
+  </EntityType>
+  <Association Name="FK__chi_tiet___ma_gi__1FCDBCEB">
+    <End Role="gio_hang" Type="Self.gio_hang" Multiplicity="1" />
+    <End Role="chi_tiet_gio_hang" Type="Self.chi_tiet_gio_hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gio_hang">
+        <PropertyRef Name="ma_gio_hang" />
+      </Principal>
+      <Dependent Role="chi_tiet_gio_hang">
+        <PropertyRef Name="ma_gio_hang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__chi_tiet___ma_xe__20C1E124">
+    <End Role="danh_muc_xe_hoi" Type="Self.danh_muc_xe_hoi" Multiplicity="1" />
+    <End Role="chi_tiet_gio_hang" Type="Self.chi_tiet_gio_hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="danh_muc_xe_hoi">
+        <PropertyRef Name="ma_xe" />
+      </Principal>
+      <Dependent Role="chi_tiet_gio_hang">
+        <PropertyRef Name="ma_xe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__don_hang__ma_kh__173876EA">
+    <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="0..1" />
+    <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khach_hang">
+        <PropertyRef Name="ma_kh" />
+      </Principal>
+      <Dependent Role="don_hang">
+        <PropertyRef Name="ma_kh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__gio_hang__ma_kh__1BFD2C07">
+    <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="0..1" />
+    <End Role="gio_hang" Type="Self.gio_hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khach_hang">
+        <PropertyRef Name="ma_kh" />
+      </Principal>
+      <Dependent Role="gio_hang">
+        <PropertyRef Name="ma_kh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__thanh_toa__ma_dh__239E4DCF">
+    <End Role="don_hang" Type="Self.don_hang" Multiplicity="0..1" />
+    <End Role="thanh_toan" Type="Self.thanh_toan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="don_hang">
+        <PropertyRef Name="ma_dh" />
+      </Principal>
+      <Dependent Role="thanh_toan">
+        <PropertyRef Name="ma_dh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DOTRONGHUY_CNTT1_2210900029_Project2ModelStoreContainer">
+    <EntitySet Name="chi_tiet_gio_hang" EntityType="Self.chi_tiet_gio_hang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="danh_muc_xe_hoi" EntityType="Self.danh_muc_xe_hoi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="don_hang" EntityType="Self.don_hang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gio_hang" EntityType="Self.gio_hang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="khach_hang" EntityType="Self.khach_hang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="quan_tri" EntityType="Self.quan_tri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="thanh_toan" EntityType="Self.thanh_toan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__chi_tiet___ma_gi__1FCDBCEB" Association="Self.FK__chi_tiet___ma_gi__1FCDBCEB">
+      <End Role="gio_hang" EntitySet="gio_hang" />
+      <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__chi_tiet___ma_xe__20C1E124" Association="Self.FK__chi_tiet___ma_xe__20C1E124">
+      <End Role="danh_muc_xe_hoi" EntitySet="danh_muc_xe_hoi" />
+      <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__don_hang__ma_kh__173876EA" Association="Self.FK__don_hang__ma_kh__173876EA">
+      <End Role="khach_hang" EntitySet="khach_hang" />
+      <End Role="don_hang" EntitySet="don_hang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__gio_hang__ma_kh__1BFD2C07" Association="Self.FK__gio_hang__ma_kh__1BFD2C07">
+      <End Role="khach_hang" EntitySet="khach_hang" />
+      <End Role="gio_hang" EntitySet="gio_hang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__thanh_toa__ma_dh__239E4DCF" Association="Self.FK__thanh_toa__ma_dh__239E4DCF">
+      <End Role="don_hang" EntitySet="don_hang" />
+      <End Role="thanh_toan" EntitySet="thanh_toan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
