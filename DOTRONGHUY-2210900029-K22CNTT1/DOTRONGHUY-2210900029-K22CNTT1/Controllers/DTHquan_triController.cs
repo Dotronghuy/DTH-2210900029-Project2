@@ -12,7 +12,7 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Controllers
 {
     public class DTHquan_triController : Controller
     {
-        private DOTRONGHUY_CNTT1_2210900029_Project2Entities db = new DOTRONGHUY_CNTT1_2210900029_Project2Entities();
+        private readonly DOTRONGHUY_CNTT1_2210900029_Project2Entities db = new DOTRONGHUY_CNTT1_2210900029_Project2Entities();
 
         // GET: DTHquan_tri
         public ActionResult Index()
@@ -114,6 +114,41 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Login()
+        {
+            return View(new LoginViewModel());
+        }
+
+        // POST: DTHquan_tri/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = db.quan_tri.FirstOrDefault(u => u.tai_khoan == model.Username && u.mat_khau == model.Password);
+
+                if (user != null)
+                {
+                    Session["TaiKhoan"] = user.tai_khoan;
+
+                    return RedirectToAction("Index", "DTHquan_tri");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Tên người dùng hoặc mật khẩu không hợp lệ.");
+                }
+            }
+            return View(model);
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login");
+        }
+
 
         protected override void Dispose(bool disposing)
         {

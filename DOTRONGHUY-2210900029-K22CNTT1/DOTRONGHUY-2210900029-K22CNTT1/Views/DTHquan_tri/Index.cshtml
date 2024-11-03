@@ -26,7 +26,7 @@
 @foreach (var item in Model) {
 <tr>
     <td>
-        @Html.DisplayNameFor(model => model.tai_khoan)
+        @Html.DisplayFor(modelItem => item.tai_khoan)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.mat_khau)

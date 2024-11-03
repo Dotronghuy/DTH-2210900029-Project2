@@ -16,7 +16,7 @@ namespace DOTRONGHUY_2210900029_K22CNTT1
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "DTHquan_tri", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "DTHquan_tri", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

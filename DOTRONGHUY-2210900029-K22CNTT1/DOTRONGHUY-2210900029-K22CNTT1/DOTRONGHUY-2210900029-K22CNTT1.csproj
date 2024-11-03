@@ -168,6 +168,7 @@
     <Compile Include="Models\khach_hang.cs">
       <DependentUpon>DoTrongHuyModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\quan_tri.cs">
       <DependentUpon>DoTrongHuyModel1.tt</DependentUpon>
     </Compile>
@@ -184,6 +185,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\main.js" />
+    <Content Include="Content\StyleSheet1.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -264,6 +267,7 @@
     <Content Include="Views\DTHthanh_toan\Details.cshtml" />
     <Content Include="Views\DTHthanh_toan\Edit.cshtml" />
     <Content Include="Views\DTHthanh_toan\Index.cshtml" />
+    <Content Include="Views\DTHquan_tri\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

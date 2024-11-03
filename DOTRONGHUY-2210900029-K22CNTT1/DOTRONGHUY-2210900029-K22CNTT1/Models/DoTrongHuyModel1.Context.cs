@@ -19,6 +19,7 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Models
             : base("name=DOTRONGHUY_CNTT1_2210900029_Project2Entities")
         {
         }
+
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
