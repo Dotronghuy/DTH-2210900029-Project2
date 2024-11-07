@@ -17,5 +17,8 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Models
         public string tai_khoan { get; set; }
         public string mat_khau { get; set; }
         public Nullable<byte> trang_thai { get; set; }
+        public bool isAdmin { get; set; }
+    
+        public virtual user_auth user_auth { get; set; }
     }
 }

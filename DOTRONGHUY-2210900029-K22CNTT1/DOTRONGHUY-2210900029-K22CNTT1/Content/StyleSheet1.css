@@ -1414,10 +1414,7 @@ body {
     border-radius: 2px;
 }
 
-.container {
-    display: flex;
-    height: 235px;
-}
+.
 
 .show-banner_left {
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
@@ -3321,7 +3318,7 @@ body {
 .shoppe-top {
     background: linear-gradient(-180deg, #f53d2d, #f63);
     width: 1519px;
-    height: 120px;
+    height: 60px;
 }
 
 .desc_nav {

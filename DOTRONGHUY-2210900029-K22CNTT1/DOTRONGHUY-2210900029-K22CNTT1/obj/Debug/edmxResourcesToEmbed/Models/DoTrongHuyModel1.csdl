@@ -22,6 +22,7 @@
     <Property Name="mo_ta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="so_luong" Type="Int32" />
     <NavigationProperty Name="chi_tiet_gio_hang" Relationship="Self.FK__chi_tiet___ma_xe__20C1E124" FromRole="danh_muc_xe_hoi" ToRole="chi_tiet_gio_hang" />
+    <Property Name="anh" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="don_hang">
     <Key>
@@ -63,6 +64,8 @@
     <Property Name="trang_thai" Type="Byte" />
     <NavigationProperty Name="don_hang" Relationship="Self.FK__don_hang__ma_kh__173876EA" FromRole="khach_hang" ToRole="don_hang" />
     <NavigationProperty Name="gio_hang" Relationship="Self.FK__gio_hang__ma_kh__1BFD2C07" FromRole="khach_hang" ToRole="gio_hang" />
+    <Property Name="isAdmin" Type="Boolean" />
+    <NavigationProperty Name="user_auth" Relationship="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_khach_hang_user_auth" FromRole="khach_hang" ToRole="user_auth" />
   </EntityType>
   <EntityType Name="quan_tri">
     <Key>
@@ -71,6 +74,8 @@
     <Property Name="tai_khoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="mat_khau" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
     <Property Name="trang_thai" Type="Byte" />
+    <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="user_auth" Relationship="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_quan_tri_user_auth" FromRole="quan_tri" ToRole="user_auth" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -184,5 +189,48 @@
       <End Role="khach_hang" EntitySet="khach_hang" />
       <End Role="gio_hang" EntitySet="gio_hang" />
     </AssociationSet>
+    <EntitySet Name="user_auth" EntityType="DOTRONGHUY_CNTT1_2210900029_Project2Model.user_auth" />
+    <AssociationSet Name="FK_khach_hang_user_auth" Association="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_khach_hang_user_auth">
+      <End Role="user_auth" EntitySet="user_auth" />
+      <End Role="khach_hang" EntitySet="khach_hang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_quan_tri_user_auth" Association="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_quan_tri_user_auth">
+      <End Role="user_auth" EntitySet="user_auth" />
+      <End Role="quan_tri" EntitySet="quan_tri" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="user_auth">
+    <Key>
+      <PropertyRef Name="tai_khoan" />
+    </Key>
+    <Property Name="tai_khoan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mat_khau" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="isAdmin" Type="Boolean" />
+    <NavigationProperty Name="khach_hang" Relationship="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_khach_hang_user_auth" FromRole="user_auth" ToRole="khach_hang" />
+    <NavigationProperty Name="quan_tri" Relationship="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_quan_tri_user_auth" FromRole="user_auth" ToRole="quan_tri" />
+  </EntityType>
+  <Association Name="FK_khach_hang_user_auth">
+    <End Type="DOTRONGHUY_CNTT1_2210900029_Project2Model.user_auth" Role="user_auth" Multiplicity="0..1" />
+    <End Type="DOTRONGHUY_CNTT1_2210900029_Project2Model.khach_hang" Role="khach_hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_auth">
+        <PropertyRef Name="tai_khoan" />
+      </Principal>
+      <Dependent Role="khach_hang">
+        <PropertyRef Name="tai_khoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_quan_tri_user_auth">
+    <End Type="DOTRONGHUY_CNTT1_2210900029_Project2Model.user_auth" Role="user_auth" Multiplicity="1" />
+    <End Type="DOTRONGHUY_CNTT1_2210900029_Project2Model.quan_tri" Role="quan_tri" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="user_auth">
+        <PropertyRef Name="tai_khoan" />
+      </Principal>
+      <Dependent Role="quan_tri">
+        <PropertyRef Name="tai_khoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

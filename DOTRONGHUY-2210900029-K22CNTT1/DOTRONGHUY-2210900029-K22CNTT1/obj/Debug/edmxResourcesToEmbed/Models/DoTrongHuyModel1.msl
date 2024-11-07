@@ -13,6 +13,7 @@
     <EntitySetMapping Name="danh_muc_xe_hoi">
       <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.danh_muc_xe_hoi">
         <MappingFragment StoreEntitySet="danh_muc_xe_hoi">
+          <ScalarProperty Name="anh" ColumnName="anh" />
           <ScalarProperty Name="ma_xe" ColumnName="ma_xe" />
           <ScalarProperty Name="ten_xe" ColumnName="ten_xe" />
           <ScalarProperty Name="hang_xe" ColumnName="hang_xe" />
@@ -45,6 +46,7 @@
     <EntitySetMapping Name="khach_hang">
       <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.khach_hang">
         <MappingFragment StoreEntitySet="khach_hang">
+          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
           <ScalarProperty Name="ma_kh" ColumnName="ma_kh" />
           <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
           <ScalarProperty Name="tai_khoan" ColumnName="tai_khoan" />
@@ -63,6 +65,7 @@
     <EntitySetMapping Name="quan_tri">
       <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.quan_tri">
         <MappingFragment StoreEntitySet="quan_tri">
+          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
           <ScalarProperty Name="tai_khoan" ColumnName="tai_khoan" />
           <ScalarProperty Name="mat_khau" ColumnName="mat_khau" />
           <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
@@ -90,6 +93,15 @@
           <ScalarProperty Name="phuong_thuc" ColumnName="phuong_thuc" />
           <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
           <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_auth">
+      <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.user_auth">
+        <MappingFragment StoreEntitySet="user_auth">
+          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+          <ScalarProperty Name="mat_khau" ColumnName="mat_khau" />
+          <ScalarProperty Name="tai_khoan" ColumnName="tai_khoan" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

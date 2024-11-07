@@ -33,10 +33,12 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Models
         public Nullable<byte> gioi_tinh { get; set; }
         public Nullable<int> tich_diem { get; set; }
         public Nullable<byte> trang_thai { get; set; }
+        public Nullable<bool> isAdmin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<don_hang> don_hang { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<gio_hang> gio_hang { get; set; }
+        public virtual user_auth user_auth { get; set; }
     }
 }

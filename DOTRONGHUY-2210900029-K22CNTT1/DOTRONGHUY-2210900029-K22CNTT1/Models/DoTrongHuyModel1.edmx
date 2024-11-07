@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DOTRONGHUY_CNTT1_2210900029_Project2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DOTRONGHUY_CNTT1_2210900029_Project2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="chi_tiet_gio_hang">
           <Key>
             <PropertyRef Name="ma_gio_hang" />
@@ -24,6 +24,7 @@
           <Property Name="gia_ban" Type="decimal" Precision="10" Scale="2" />
           <Property Name="mo_ta" Type="text" />
           <Property Name="so_luong" Type="int" />
+          <Property Name="anh" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="don_hang">
           <Key>
@@ -59,6 +60,7 @@
           <Property Name="gioi_tinh" Type="tinyint" />
           <Property Name="tich_diem" Type="int" />
           <Property Name="trang_thai" Type="tinyint" />
+          <Property Name="isAdmin" Type="bit" />
         </EntityType>
         <EntityType Name="quan_tri">
           <Key>
@@ -67,6 +69,7 @@
           <Property Name="tai_khoan" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="mat_khau" Type="varchar" MaxLength="32" />
           <Property Name="trang_thai" Type="tinyint" />
+          <Property Name="isAdmin" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -89,6 +92,14 @@
           <Property Name="phuong_thuc" Type="varchar" MaxLength="50" />
           <Property Name="trang_thai" Type="tinyint" />
           <Property Name="mo_ta" Type="text" />
+        </EntityType>
+        <EntityType Name="user_auth">
+          <Key>
+            <PropertyRef Name="tai_khoan" />
+          </Key>
+          <Property Name="tai_khoan" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mat_khau" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="isAdmin" Type="bit" />
         </EntityType>
         <Association Name="FK__chi_tiet___ma_gi__1FCDBCEB">
           <End Role="gio_hang" Type="Self.gio_hang" Multiplicity="1" />
@@ -150,6 +161,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_khach_hang_user_auth">
+          <End Role="user_auth" Type="Self.user_auth" Multiplicity="0..1" />
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_auth">
+              <PropertyRef Name="tai_khoan" />
+            </Principal>
+            <Dependent Role="khach_hang">
+              <PropertyRef Name="tai_khoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_quan_tri_user_auth">
+          <End Role="user_auth" Type="Self.user_auth" Multiplicity="1" />
+          <End Role="quan_tri" Type="Self.quan_tri" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user_auth">
+              <PropertyRef Name="tai_khoan" />
+            </Principal>
+            <Dependent Role="quan_tri">
+              <PropertyRef Name="tai_khoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DOTRONGHUY_CNTT1_2210900029_Project2ModelStoreContainer">
           <EntitySet Name="chi_tiet_gio_hang" EntityType="Self.chi_tiet_gio_hang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="danh_muc_xe_hoi" EntityType="Self.danh_muc_xe_hoi" Schema="dbo" store:Type="Tables" />
@@ -159,6 +194,7 @@
           <EntitySet Name="quan_tri" EntityType="Self.quan_tri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="thanh_toan" EntityType="Self.thanh_toan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_auth" EntityType="Self.user_auth" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__chi_tiet___ma_gi__1FCDBCEB" Association="Self.FK__chi_tiet___ma_gi__1FCDBCEB">
             <End Role="gio_hang" EntitySet="gio_hang" />
             <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
@@ -179,9 +215,16 @@
             <End Role="don_hang" EntitySet="don_hang" />
             <End Role="thanh_toan" EntitySet="thanh_toan" />
           </AssociationSet>
+          <AssociationSet Name="FK_khach_hang_user_auth" Association="Self.FK_khach_hang_user_auth">
+            <End Role="user_auth" EntitySet="user_auth" />
+            <End Role="khach_hang" EntitySet="khach_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_quan_tri_user_auth" Association="Self.FK_quan_tri_user_auth">
+            <End Role="user_auth" EntitySet="user_auth" />
+            <End Role="quan_tri" EntitySet="quan_tri" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DOTRONGHUY_CNTT1_2210900029_Project2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -207,6 +250,7 @@
           <Property Name="mo_ta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="so_luong" Type="Int32" />
           <NavigationProperty Name="chi_tiet_gio_hang" Relationship="Self.FK__chi_tiet___ma_xe__20C1E124" FromRole="danh_muc_xe_hoi" ToRole="chi_tiet_gio_hang" />
+          <Property Name="anh" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="don_hang">
           <Key>
@@ -248,6 +292,8 @@
           <Property Name="trang_thai" Type="Byte" />
           <NavigationProperty Name="don_hang" Relationship="Self.FK__don_hang__ma_kh__173876EA" FromRole="khach_hang" ToRole="don_hang" />
           <NavigationProperty Name="gio_hang" Relationship="Self.FK__gio_hang__ma_kh__1BFD2C07" FromRole="khach_hang" ToRole="gio_hang" />
+          <Property Name="isAdmin" Type="Boolean" />
+          <NavigationProperty Name="user_auth" Relationship="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_khach_hang_user_auth" FromRole="khach_hang" ToRole="user_auth" />
         </EntityType>
         <EntityType Name="quan_tri">
           <Key>
@@ -256,6 +302,8 @@
           <Property Name="tai_khoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="mat_khau" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="trang_thai" Type="Byte" />
+          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="user_auth" Relationship="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_quan_tri_user_auth" FromRole="quan_tri" ToRole="user_auth" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -369,7 +417,50 @@
             <End Role="khach_hang" EntitySet="khach_hang" />
             <End Role="gio_hang" EntitySet="gio_hang" />
           </AssociationSet>
+          <EntitySet Name="user_auth" EntityType="DOTRONGHUY_CNTT1_2210900029_Project2Model.user_auth" />
+          <AssociationSet Name="FK_khach_hang_user_auth" Association="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_khach_hang_user_auth">
+            <End Role="user_auth" EntitySet="user_auth" />
+            <End Role="khach_hang" EntitySet="khach_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_quan_tri_user_auth" Association="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_quan_tri_user_auth">
+            <End Role="user_auth" EntitySet="user_auth" />
+            <End Role="quan_tri" EntitySet="quan_tri" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="user_auth">
+          <Key>
+            <PropertyRef Name="tai_khoan" />
+          </Key>
+          <Property Name="tai_khoan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mat_khau" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="isAdmin" Type="Boolean" />
+          <NavigationProperty Name="khach_hang" Relationship="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_khach_hang_user_auth" FromRole="user_auth" ToRole="khach_hang" />
+          <NavigationProperty Name="quan_tri" Relationship="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_quan_tri_user_auth" FromRole="user_auth" ToRole="quan_tri" />
+        </EntityType>
+        <Association Name="FK_khach_hang_user_auth">
+          <End Type="DOTRONGHUY_CNTT1_2210900029_Project2Model.user_auth" Role="user_auth" Multiplicity="0..1" />
+          <End Type="DOTRONGHUY_CNTT1_2210900029_Project2Model.khach_hang" Role="khach_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_auth">
+              <PropertyRef Name="tai_khoan" />
+            </Principal>
+            <Dependent Role="khach_hang">
+              <PropertyRef Name="tai_khoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_quan_tri_user_auth">
+          <End Type="DOTRONGHUY_CNTT1_2210900029_Project2Model.user_auth" Role="user_auth" Multiplicity="1" />
+          <End Type="DOTRONGHUY_CNTT1_2210900029_Project2Model.quan_tri" Role="quan_tri" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user_auth">
+              <PropertyRef Name="tai_khoan" />
+            </Principal>
+            <Dependent Role="quan_tri">
+              <PropertyRef Name="tai_khoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -388,6 +479,7 @@
           <EntitySetMapping Name="danh_muc_xe_hoi">
             <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.danh_muc_xe_hoi">
               <MappingFragment StoreEntitySet="danh_muc_xe_hoi">
+                <ScalarProperty Name="anh" ColumnName="anh" />
                 <ScalarProperty Name="ma_xe" ColumnName="ma_xe" />
                 <ScalarProperty Name="ten_xe" ColumnName="ten_xe" />
                 <ScalarProperty Name="hang_xe" ColumnName="hang_xe" />
@@ -420,6 +512,7 @@
           <EntitySetMapping Name="khach_hang">
             <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.khach_hang">
               <MappingFragment StoreEntitySet="khach_hang">
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
                 <ScalarProperty Name="ma_kh" ColumnName="ma_kh" />
                 <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
                 <ScalarProperty Name="tai_khoan" ColumnName="tai_khoan" />
@@ -438,6 +531,7 @@
           <EntitySetMapping Name="quan_tri">
             <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.quan_tri">
               <MappingFragment StoreEntitySet="quan_tri">
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
                 <ScalarProperty Name="tai_khoan" ColumnName="tai_khoan" />
                 <ScalarProperty Name="mat_khau" ColumnName="mat_khau" />
                 <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
@@ -465,6 +559,15 @@
                 <ScalarProperty Name="phuong_thuc" ColumnName="phuong_thuc" />
                 <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
                 <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_auth">
+            <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.user_auth">
+              <MappingFragment StoreEntitySet="user_auth">
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="mat_khau" ColumnName="mat_khau" />
+                <ScalarProperty Name="tai_khoan" ColumnName="tai_khoan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

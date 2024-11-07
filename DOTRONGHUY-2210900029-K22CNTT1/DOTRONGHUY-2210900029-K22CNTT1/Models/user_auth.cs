@@ -12,23 +12,20 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class danh_muc_xe_hoi
+    public partial class user_auth
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public danh_muc_xe_hoi()
+        public user_auth()
         {
-            this.chi_tiet_gio_hang = new HashSet<chi_tiet_gio_hang>();
+            this.khach_hang = new HashSet<khach_hang>();
         }
     
-        public int ma_xe { get; set; }
-        public string ten_xe { get; set; }
-        public string hang_xe { get; set; }
-        public Nullable<decimal> gia_ban { get; set; }
-        public string mo_ta { get; set; }
-        public Nullable<int> so_luong { get; set; }
-        public string anh { get; set; }
+        public string tai_khoan { get; set; }
+        public string mat_khau { get; set; }
+        public Nullable<bool> isAdmin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<chi_tiet_gio_hang> chi_tiet_gio_hang { get; set; }
+        public virtual ICollection<khach_hang> khach_hang { get; set; }
+        public virtual quan_tri quan_tri { get; set; }
     }
 }

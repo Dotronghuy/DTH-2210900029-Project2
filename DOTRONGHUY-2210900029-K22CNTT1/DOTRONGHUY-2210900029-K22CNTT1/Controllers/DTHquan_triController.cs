@@ -117,7 +117,7 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Controllers
 
         public ActionResult Login()
         {
-            return View(new LoginViewModel());
+            return View();
         }
 
         // POST: DTHquan_tri/Login
@@ -127,20 +127,49 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = db.quan_tri.FirstOrDefault(u => u.tai_khoan == model.Username && u.mat_khau == model.Password);
+                var userAuth = db.user_auth.FirstOrDefault(u => u.tai_khoan == model.Username && u.mat_khau == model.Password);
 
-                if (user != null)
+                if (userAuth != null)
                 {
-                    Session["TaiKhoan"] = user.tai_khoan;
+                    var userQuanTri = db.quan_tri.FirstOrDefault(u => u.tai_khoan == userAuth.tai_khoan);
+                    var userKhachHang = db.khach_hang.FirstOrDefault(u => u.tai_khoan == userAuth.tai_khoan);
 
-                    return RedirectToAction("Index", "DTHquan_tri");
+                    if (userQuanTri != null)
+                    {
+                        Session["TaiKhoan"] = userQuanTri.tai_khoan;
+                        Session["IsAdmin"] = true;  
+                        return RedirectToAction("Index", "DTHquan_tri"); 
+                    }
+                    else if (userKhachHang != null)
+                    {
+                        Session["TaiKhoan"] = userKhachHang.tai_khoan;
+                        Session["IsAdmin"] = false; 
+                        return RedirectToAction("Index", "DTHkhach_hang");
+                    }
                 }
                 else
                 {
                     ModelState.AddModelError("", "Tên người dùng hoặc mật khẩu không hợp lệ.");
                 }
             }
+
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult HandleAction(string action, string tai_khoan)
+        {
+            switch (action)
+            {
+                case "edit":
+                    return RedirectToAction("Edit", new { id = tai_khoan });
+                case "details":
+                    return RedirectToAction("Details", new { id = tai_khoan });
+                case "delete":
+                    return RedirectToAction("Delete", new { id = tai_khoan });
+                default:
+                    return RedirectToAction("Index");
+            }
         }
 
         public ActionResult Logout()

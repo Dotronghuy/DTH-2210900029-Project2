@@ -5,42 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Showroom ô tô</title>
     <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/Content/StyleSheet2.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body{
+            background-color:#f5f5f5 !important;
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="wrap-nav shoppe-top">
-                <div class="desc_nav">
-                    <div class="container_nav container-center">
-                        <div class="container_left">
-                        </div>
-                        <div class="nav_space"></div>
-                        <div class="container_right">
-                            @if (Session["TaiKhoan"] != null)
-                            {
-                                <a href="@Url.Action("Logout", "DTHquan_tri")" class="log-in container-link desc-title">Đăng xuất</a>
-                                <div class="nav-wall"></div>
-                                <span class="log-in container-link desc-title">@Session["TaiKhoan"]</span>
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("Login", "DTHquan_tri")" class="log-in container-link desc-title">Đăng Nhập</a>
-                            }
-                        </div>
-                    </div>
+    <div class="wrap-nav shoppe-top" style="height:60px">
+        <div class="desc_nav">
+            <div class="container_nav container-center">
+                <div class="container_left">
+                </div>
+                <div class="nav_space"></div>
+                <div class="container_right">
+                    @if (Session["TaiKhoan"] != null)
+                    {
+                        <a href="@Url.Action("Logout", "DTHquan_tri")" class="log-in container-link desc-title">Đăng xuất</a>
+                        <div class="nav-wall"></div>
+                        <span class="log-in container-link desc-title">@Session["TaiKhoan"]</span>
+                    }
+                    else
+                    {
+                    }
                 </div>
             </div>
-            @if ((string)ViewContext.RouteData.Values["action"] != "Login")
-            {
-            <div id="admin">
-                <button class="open-item">&#9776;</button>
-            </div>
-            }
         </div>
     </div>
-    <div class="container body-content ">
+    @if ((string)ViewContext.RouteData.Values["action"] != "Login")
+    {
+        <div id="admin">
+            <button class="open-item">&#9776;</button>
+        </div>
+    }
+    <div class="container body-content flex flex-col">
         @RenderBody()
         <hr />
     </div>
@@ -48,6 +52,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Content/main.js"></script>
+    <script src="~/Content/indexQT.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

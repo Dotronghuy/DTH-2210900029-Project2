@@ -18,6 +18,9 @@
         <AssociationConnector Association="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK__don_hang__ma_kh__173876EA" ManuallyRouted="false" />
         <AssociationConnector Association="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK__thanh_toa__ma_dh__239E4DCF" ManuallyRouted="false" />
         <AssociationConnector Association="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK__gio_hang__ma_kh__1BFD2C07" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DOTRONGHUY_CNTT1_2210900029_Project2Model.user_auth" Width="1.5" PointX="10.5" PointY="2.75" />
+        <AssociationConnector Association="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_khach_hang_user_auth" />
+        <AssociationConnector Association="DOTRONGHUY_CNTT1_2210900029_Project2Model.FK_quan_tri_user_auth" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

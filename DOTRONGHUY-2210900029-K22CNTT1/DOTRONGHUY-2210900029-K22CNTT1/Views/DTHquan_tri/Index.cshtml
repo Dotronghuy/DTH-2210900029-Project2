@@ -4,42 +4,62 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container-cart-products">
+    <h2 class="text-center">Danh sách tài khoản</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tai_khoan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mat_khau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.trang_thai)
-        </th>
-        <th></th>
-    </tr>
+    <p class="text-center">
+        @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-success" })
+    </p>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.tai_khoan)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.mat_khau)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.trang_thai)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.tai_khoan }) |
-        @Html.ActionLink("Details", "Details", new { id = item.tai_khoan }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.tai_khoan })
-    </td>
-</tr>
-}
+    <div class="wrrapper-products-cart">
+        <div class="input-radio_cart">
+            <label for="checkbox-all" class="input-radio">
+                <input type="checkbox" class="input-checkboxs" id="checkbox-all">
+            </label>
+        </div>
+        <div class="name-products_cart">Tài khoản</div>
+        <div class="price-products_cart">Mật khẩu</div>
+        <div class="quanlity-products_cart">Trạng thái</div>
+        <div class="option-products_cart">Hành động</div>
+    </div>
 
-</table>
+    <section class="products-cart default">
+        @foreach (var item in Model)
+        {
+            <div class="wrrapper-products">
+                <div class="product-cart flex-center">
+                    <div class="input-radio_cart">
+                        <label class="input-radio">
+                            <input type="checkbox" class="input-checkboxs" name="nameIds[]" value="@item.tai_khoan">
+                        </label>
+                    </div>
+
+                    <div class="list-product-cart default">
+                        <div class="item-product-cart">
+                            <div class="title-product-cart">
+                                <span>@Html.DisplayFor(modelItem => item.tai_khoan)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="price-product">
+                        <span class="price">@Html.DisplayFor(modelItem => item.mat_khau)</span>
+                    </div>
+
+                    <div class="quanlity-product">
+                        <span>@(item.trang_thai == 1 ? "Đang hoạt động" : "Không hoạt động")</span>
+                    </div>
+
+                    <div class="option-product-cart">
+                        <select class="infor-handle">
+                            <option value="">Chọn hành động</option>
+                            <option value="edit-user" data-url="@Url.Action("Edit", new { id = item.tai_khoan })">Edit</option>
+                            <option value="details-user" data-url="@Url.Action("Details", new { id = item.tai_khoan })">Details</option>
+                            <option value="delete-user" data-url="@Url.Action("Delete", new { id = item.tai_khoan })">Delete</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        }
+    </section>
+</div>
