@@ -38,7 +38,7 @@
 
                 <div class="input-info_wrrapper-user info-account">
                     <div class="info-inner flex-center">
-                        @Html.TextBoxFor(m => m.Username, new { @class = "form-label", placeholder = "Email", style="max-width:340px;" })
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-label", placeholder = "Tài khoản", style = "max-width:340px;" })
                     </div>
                     @Html.ValidationMessageFor(m => m.Username, "", new { @class = "form-message" })
                 </div>
@@ -55,7 +55,6 @@
 
             <div class="input-help flex-center">
                 <a href="#" class="help-sign-up">Quên mật khẩu</a>
-                <a href="/Account/SMSLogin" class="help-sign-up">Đăng nhập với SMS</a>
             </div>
 
             <div class="select-sign-up">
@@ -78,6 +77,12 @@
                         <div>Google</div>
                     </button>
                 </div>
+            </div>
+        </div>
+        <div class="href-sign-in">
+            <div class="flex-center desc-sign-in ">
+                Bạn mới biết đến chúng tôi ? 
+                <a href="@Url.Action("Register", "DTHquan_tri")" class="sign-in" style="margin-left: 6px; ">Đăng ký</a>
             </div>
         </div>
 

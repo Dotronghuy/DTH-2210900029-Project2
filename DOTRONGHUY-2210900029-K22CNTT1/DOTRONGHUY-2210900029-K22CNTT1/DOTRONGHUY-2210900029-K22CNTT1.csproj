@@ -173,6 +173,7 @@
     <Compile Include="Models\quan_tri.cs">
       <DependentUpon>DoTrongHuyModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>DoTrongHuyModel1.tt</DependentUpon>
     </Compile>
@@ -286,6 +287,8 @@
     <Content Include="Views\DTHthanh_toan\Edit.cshtml" />
     <Content Include="Views\DTHthanh_toan\Index.cshtml" />
     <Content Include="Views\DTHquan_tri\Login.cshtml" />
+    <Content Include="Views\DTHchi_tiet_gio_hang\Cart.cshtml" />
+    <Content Include="Views\DTHquan_tri\Register.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,109 +1,114 @@
 ﻿@model IEnumerable<DOTRONGHUY_2210900029_K22CNTT1.Models.khach_hang>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách khách hàng";
 }
 
-<h2>Index</h2>
+<div class="container-cart-products">
+    <h2 class="text-center">Danh sách tài khoản</h2>
 
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ho_ten)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tai_khoan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mat_khau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dia_chi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dien_thoai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngay_sinh)
-        </th>
-        @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
-            {
-            <th>
-                @Html.DisplayNameFor(model => model.ngay_cap_nhat)
-            </th>
-            }
-
-        <th>
-            @Html.DisplayNameFor(model => model.gioi_tinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tich_diem)
-        </th>
-        @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
-        {
-
-            <th>
-                @Html.DisplayNameFor(model => model.trang_thai)
-            </th>
-        }
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.ho_ten)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.tai_khoan)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.mat_khau)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.dia_chi)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.dien_thoai)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.email)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ngay_sinh)
-    </td>
-         @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
-                {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ngay_cap_nhat)
-                    </td>
-                }
-
-
-    <td>
-        @Html.DisplayFor(modelItem => item.gioi_tinh)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.tich_diem)
-    </td>
+    <!-- Nút tạo mới tài khoản chỉ hiển thị cho quản trị viên -->
     @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
     {
-        <td>
-            @Html.DisplayFor(modelItem => item.trang_thai)
-        </td>
+        <p class="text-center">
+            @Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-success" })
+        </p>
     }
 
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ma_kh }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ma_kh }) |
-        @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
-        {
-            @Html.ActionLink("Delete", "Delete", new { id = item.ma_kh })}
-    </td>
-</tr>
-}
+    <!-- Header phần tiêu đề -->
+    <div class="wrrapper-products-cart">
+        <div class="input-radio_cart">
+            <label for="checkbox-all" class="input-radio">
+                <input type="checkbox" class="input-checkboxs" id="checkbox-all">
+            </label>
+        </div>
+        <div class="name-products_cart" style="width: 8.27949%;">Họ và Tên</div>
+        <div class="price-products_cart">Tài khoản</div>
+        <div class="address-products_cart" style="width: 8.27949%;">Địa chỉ</div>
+        <div class="phone-products_cart" style="width: 15%;">Số điện thoại</div>
+        <div class="email-products_cart" style="width: 11%;">Email</div>
+        <div class="gender-products_cart">Giới tính</div>
+        <div class="option-products_cart">Hành động</div>
+    </div>
 
-</table>
+    <!-- Danh sách tài khoản dưới dạng thẻ -->
+    <div class="products-cart default">
+        @foreach (var item in Model)
+        {
+            <!-- Chỉ hiển thị thông tin khách hàng nếu là quản trị viên hoặc nếu là khách hàng hiện tại -->
+            if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"] || (Session["TaiKhoan"] != null && (string)Session["TaiKhoan"] == item.tai_khoan))
+            {
+                <div class="wrrapper-products">
+                    <div class="product-cart flex-center">
+                        <!-- Checkbox chọn tài khoản -->
+                        <div class="input-radio_cart">
+                            <label class="input-radio">
+                                <input type="checkbox" class="input-checkboxs" name="nameIds[]" value="@item.tai_khoan">
+                            </label>
+                        </div>
+
+                        <!-- Họ và Tên -->
+                        <div class="list-product-cart default" style=" width: 8.03811%; ">
+                            <div class="item-product-cart">
+                                <span>@Html.DisplayFor(modelItem => item.ho_ten)</span>
+                            </div>
+                        </div>
+
+                        <!-- Tài khoản -->
+                        <div class="list-product-cart default" style=" width: 18.03811%;">
+                            <div class="item-product-cart">
+                                <span>@Html.DisplayFor(modelItem => item.tai_khoan)</span>
+                            </div>
+                        </div>
+
+                        <!-- Địa chỉ -->
+                        <div class="address-product" style="width:8%;">
+                            <span>@Html.DisplayFor(modelItem => item.dia_chi)</span>
+                        </div>
+
+                        <!-- Số điện thoại -->
+                        <div class="phone-product" style="width:13%">
+                            <span>@Html.DisplayFor(modelItem => item.dien_thoai)</span>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="email-product" style="width: 100px; margin-right:50px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; ">
+                            <span>@Html.DisplayFor(modelItem => item.email)</span>
+                        </div>
+
+                        <!-- Giới tính -->
+                        <div class="gender-product">
+                            <span>@(item.gioi_tinh == 1 ? "Nam" : item.gioi_tinh == 2 ? "Nữ" : "")</span>
+                        </div>
+
+                        <!-- Tùy chọn hành động -->
+                        <div class="option-product-cart">
+                            <select class="infor-handle" onchange="handleActionChange(this)">
+                                <option value="">Chọn hành động</option>
+                                <option value="edit-user" data-url="@Url.Action("Edit", new { id = item.ma_kh })">Edit</option>
+                                <option value="details-user" data-url="@Url.Action("Details", new { id = item.ma_kh })">Details</option>
+                                @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
+                                {
+                                    <option value="delete-user" data-url="@Url.Action("Delete", new { id = item.ma_kh })">Delete</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function handleActionChange(selectElement) {
+            var selectedOption = selectElement.value;
+            var url = selectElement.options[selectElement.selectedIndex].getAttribute('data-url');
+
+            if (selectedOption && url) {
+                window.location.href = url;
+            }
+        }
+    </script>
+}

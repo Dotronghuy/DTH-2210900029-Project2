@@ -1,0 +1,72 @@
+﻿@model DOTRONGHUY_2210900029_K22CNTT1.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Đăng ký";
+}
+
+<div class="wrrapper-input" style="margin-left:auto; margin-right:auto; margin-top:20px">
+    <div class="wrrapper-input_inner info-sign-up-in">
+        <div class="input-header flex-center">
+            <div class="flex-center desc-input_header">
+                <div class="input-header_text">Đăng ký</div>
+            </div>
+        </div>
+
+        <div class="input-info">
+            @using (Html.BeginForm("Register", "DTHquan_tri", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="input-info_wrrapper-user info-account">
+                    <div class="info-inner flex-center">
+                        @Html.TextBoxFor(m => m.TaiKhoan, new { @class = "form-label", placeholder = "Tài khoản", style = "max-width:340px;" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.TaiKhoan, "", new { @class = "form-message" })
+                </div>
+
+                <div class="input-info_wrrapper-user info-password">
+                    <div class="info-inner flex-center">
+                        @Html.PasswordFor(m => m.MatKhau, new { @class = "form-label", placeholder = "Mật khẩu", style = "max-width:340px;" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.MatKhau, "", new { @class = "form-message" })
+                </div>
+
+                <button type="submit" class="submit flex-center size-submit">Đăng ký</button>
+            }
+
+            <div class="input-help flex-center">
+                <a href="#" class="help-sign-up">Quên mật khẩu</a>
+            </div>
+
+            <div class="select-sign-up">
+                <div class="another flex-center">
+                    <div class="border-another"></div>
+                    <div class="text-another">hoặc</div>
+                    <div class="border-another"></div>
+                </div>
+                <div class="options-login flex-center">
+                    <button type="button" class="option-login size-option flex-option">
+                        <div class="option-login_item">
+                            <i class="fa-brands fa-facebook login-item" style="color: #1877f2;"></i>
+                        </div>
+                        <div>Facebook</div>
+                    </button>
+                    <button type="button" class="option-login size-option flex-option">
+                        <div class="option-login_item">
+                            <i class="fa-brands fa-google login-item" style="color: #fbbc05;"></i>
+                        </div>
+                        <div>Google</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sign In Link -->
+        <div class="href-sign-in">
+            <div class="flex-center desc-sign-in">
+                Bạn đã có tài khoản?
+                <a href="@Url.Action("Login", "DTHquan_tri")" class="sign-in">Đăng nhập</a>
+            </div>
+        </div>
+    </div>
+</div>

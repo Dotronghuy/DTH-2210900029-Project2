@@ -1,45 +1,44 @@
-﻿@model IEnumerable<DOTRONGHUY_2210900029_K22CNTT1.Models.chi_tiet_gio_hang>
+﻿@model List<DOTRONGHUY_2210900029_K22CNTT1.Models.danh_muc_xe_hoi>
 
-@{
-    ViewBag.Title = "Index";
+<h2>Giỏ Hàng</h2>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>Giỏ hàng của bạn hiện đang trống.</p>
 }
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên Xe</th>
+                <th>Hãng Xe</th>
+                <th>Giá Bán</th>
+                <th>Số Lượng</th>
+                <th>Tổng Tiền</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ten_xe</td>
+                    <td>@item.hang_xe</td>
+                    <td>@item.gia_ban</td>
+                    <td>1</td> <!-- Ở đây giả định mỗi đơn hàng chỉ có một xe, bạn có thể thêm tính năng thay đổi số lượng nếu cần -->
+                    <td>@item.gia_ban</td> <!-- Tính tổng tiền -->
+                    <td>
+                        <!-- Có thể thêm nút xóa hoặc chỉnh sửa giỏ hàng -->
+                        <a href="@Url.Action("RemoveFromCart", new { id = item.ma_xe })">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.so_luong)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gio_hang.ma_gio_hang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.danh_muc_xe_hoi.ten_xe)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.so_luong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.gio_hang.ma_gio_hang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.danh_muc_xe_hoi.ten_xe)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+    <div class="total">
+        <p><strong>Tổng tiền: @Model.Sum(x => x.gia_ban)</strong></p>
+        <a href="@Url.Action("Checkout", "DTHdon_hang")" class="btn btn-primary">Thanh Toán</a>
+    </div>
 }
-
-</table>

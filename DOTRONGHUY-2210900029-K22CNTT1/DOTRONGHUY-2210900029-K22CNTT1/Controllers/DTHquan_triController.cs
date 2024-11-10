@@ -17,8 +17,23 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Controllers
         // GET: DTHquan_tri
         public ActionResult Index()
         {
-            var quanTris = db.quan_tri.ToList();
-            return View(quanTris);
+            if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
+            {
+                var quanTris = db.quan_tri.ToList();
+                return View(quanTris);
+            }
+            else if (Session["TaiKhoan"] != null)
+            {
+                var taiKhoan = Session["TaiKhoan"].ToString();
+                var userKhachHang = db.khach_hang.FirstOrDefault(u => u.tai_khoan == taiKhoan);
+
+                if (userKhachHang != null)
+                {
+                    return View(new List<khach_hang> { userKhachHang });
+                }
+            }
+
+            return RedirectToAction("Login");
         }
 
         // GET: DTHquan_tri/Details/5
@@ -156,6 +171,54 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Controllers
 
             return View(model);
         }
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingUser = db.user_auth.FirstOrDefault(u => u.tai_khoan == model.TaiKhoan);
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError("", "Tài khoản đã tồn tại.");
+                    return View(model);
+                }
+
+                var newUserAuth = new user_auth
+                {
+                    tai_khoan = model.TaiKhoan,
+                    mat_khau = model.MatKhau
+                };
+
+                db.user_auth.Add(newUserAuth);
+                db.SaveChanges();
+
+                var gioiTinh = (byte?)model.GioiTinh;
+                var newKhachHang = new khach_hang
+                {
+                    tai_khoan = model.TaiKhoan,
+                    mat_khau = model.MatKhau,
+                    ho_ten = model.HoTen,
+                    dia_chi = model.DiaChi,
+                    dien_thoai = model.DienThoai,
+                    email = model.Email,
+                    gioi_tinh = gioiTinh
+                };
+
+                db.khach_hang.Add(newKhachHang);
+                db.SaveChanges();
+
+                return RedirectToAction("Login", "DTHquan_tri");
+            }
+
+            return View(model);
+        }
+
 
         [HttpPost]
         public ActionResult HandleAction(string action, string tai_khoan)

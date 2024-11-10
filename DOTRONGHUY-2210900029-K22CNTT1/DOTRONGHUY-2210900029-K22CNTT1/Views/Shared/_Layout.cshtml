@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    @if ((string)ViewContext.RouteData.Values["action"] != "Login")
+    @if ((string)ViewContext.RouteData.Values["action"] != "Login" && (string)ViewContext.RouteData.Values["action"] != "Register")
     {
         <div id="admin">
             <button class="open-item">&#9776;</button>

@@ -41,16 +41,14 @@
                             </div>
                         </div>
                         <div class="d-flex" style=" margin-top: 20px;">
-                            <a href="@Url.Action("AddToCart", "DTHdon_hang", new { id = item.ma_xe })" class="learn-more">Add to cart</a>
+                            <a href="@Url.Action("AddToCart", "DTHchi_tiet_gio_hang", new { id = item.ma_xe })" class="learn-more">Add to cart</a>
                         </div>
                     </div>
 
                         @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
                         {
                             <div class="actions">
-                                    <a href="@Url.Action("Edit", new { id = item.ma_xe })" class="btn edit-btn">Edit</a>
                                     <a href="@Url.Action("Delete", new { id = item.ma_xe })" class="btn delete-btn">Delete</a>
-                                @Html.ActionLink("Details", "Details", new { id = item.ma_xe })
                             </div>
                         }
                 </div>

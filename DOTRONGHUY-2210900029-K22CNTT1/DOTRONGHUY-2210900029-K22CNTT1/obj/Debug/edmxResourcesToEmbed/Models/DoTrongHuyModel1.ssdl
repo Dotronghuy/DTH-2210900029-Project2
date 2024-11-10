@@ -112,7 +112,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__chi_tiet___ma_gi__48CFD27E">
+    <End Role="gio_hang" Type="Self.gio_hang" Multiplicity="1" />
+    <End Role="chi_tiet_gio_hang" Type="Self.chi_tiet_gio_hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gio_hang">
+        <PropertyRef Name="ma_gio_hang" />
+      </Principal>
+      <Dependent Role="chi_tiet_gio_hang">
+        <PropertyRef Name="ma_gio_hang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__chi_tiet___ma_xe__20C1E124">
+    <End Role="danh_muc_xe_hoi" Type="Self.danh_muc_xe_hoi" Multiplicity="1" />
+    <End Role="chi_tiet_gio_hang" Type="Self.chi_tiet_gio_hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="danh_muc_xe_hoi">
+        <PropertyRef Name="ma_xe" />
+      </Principal>
+      <Dependent Role="chi_tiet_gio_hang">
+        <PropertyRef Name="ma_xe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__chi_tiet___ma_xe__47DBAE45">
     <End Role="danh_muc_xe_hoi" Type="Self.danh_muc_xe_hoi" Multiplicity="1" />
     <End Role="chi_tiet_gio_hang" Type="Self.chi_tiet_gio_hang" Multiplicity="*" />
     <ReferentialConstraint>
@@ -172,6 +196,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ma_xe">
+    <End Role="danh_muc_xe_hoi" Type="Self.danh_muc_xe_hoi" Multiplicity="1" />
+    <End Role="chi_tiet_gio_hang" Type="Self.chi_tiet_gio_hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="danh_muc_xe_hoi">
+        <PropertyRef Name="ma_xe" />
+      </Principal>
+      <Dependent Role="chi_tiet_gio_hang">
+        <PropertyRef Name="ma_xe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_quan_tri_user_auth">
     <End Role="user_auth" Type="Self.user_auth" Multiplicity="1" />
     <End Role="quan_tri" Type="Self.quan_tri" Multiplicity="0..1" />
@@ -198,7 +234,15 @@
       <End Role="gio_hang" EntitySet="gio_hang" />
       <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
     </AssociationSet>
+    <AssociationSet Name="FK__chi_tiet___ma_gi__48CFD27E" Association="Self.FK__chi_tiet___ma_gi__48CFD27E">
+      <End Role="gio_hang" EntitySet="gio_hang" />
+      <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
+    </AssociationSet>
     <AssociationSet Name="FK__chi_tiet___ma_xe__20C1E124" Association="Self.FK__chi_tiet___ma_xe__20C1E124">
+      <End Role="danh_muc_xe_hoi" EntitySet="danh_muc_xe_hoi" />
+      <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__chi_tiet___ma_xe__47DBAE45" Association="Self.FK__chi_tiet___ma_xe__47DBAE45">
       <End Role="danh_muc_xe_hoi" EntitySet="danh_muc_xe_hoi" />
       <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
     </AssociationSet>
@@ -217,6 +261,10 @@
     <AssociationSet Name="FK_khach_hang_user_auth" Association="Self.FK_khach_hang_user_auth">
       <End Role="user_auth" EntitySet="user_auth" />
       <End Role="khach_hang" EntitySet="khach_hang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ma_xe" Association="Self.FK_ma_xe">
+      <End Role="danh_muc_xe_hoi" EntitySet="danh_muc_xe_hoi" />
+      <End Role="chi_tiet_gio_hang" EntitySet="chi_tiet_gio_hang" />
     </AssociationSet>
     <AssociationSet Name="FK_quan_tri_user_auth" Association="Self.FK_quan_tri_user_auth">
       <End Role="user_auth" EntitySet="user_auth" />

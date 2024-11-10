@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Giỏ hàng";
+}
+
+<h2>Giỏ hàng của bạn</h2>
+
+@if (Model.Count == 0)
+{
+    <p>@ViewBag.Message</p> <!-- Hiển thị thông báo giỏ hàng trống -->
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Hình ảnh</th>
+                <th>Tên xe</th>
+                <th>Hãng xe</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Tổng tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="@item.anh" alt="Image of @item.ten_xe" style="width: 100px;"></td>
+                    <td>@item.ten_xe</td>
+                    <td>@item.hang_xe</td>
+                    <td>@item.gia_ban</td>
+                    <td>1</td> <!-- Hiện tại bạn chỉ thêm 1 xe vào giỏ hàng, có thể điều chỉnh thêm số lượng nếu cần -->
+                    <td>@item.gia_ban</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Hiển thị tổng tiền giỏ hàng -->
+    <div class="total">
+    </div>
+}
