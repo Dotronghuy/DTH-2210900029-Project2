@@ -17,6 +17,10 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Models
         public int ma_gio_hang { get; set; }
         public int ma_xe { get; set; }
         public Nullable<int> so_luong { get; set; }
+        public string ten_xe { get; set; }
+        public string hang_xe { get; set; }
+        public string anh { get; set; }
+        public Nullable<decimal> gia_ban { get; set; }
     
         public virtual gio_hang gio_hang { get; set; }
         public virtual danh_muc_xe_hoi danh_muc_xe_hoi { get; set; }

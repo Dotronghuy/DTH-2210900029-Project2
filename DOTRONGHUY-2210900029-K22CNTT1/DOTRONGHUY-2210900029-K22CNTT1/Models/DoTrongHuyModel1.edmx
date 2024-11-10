@@ -13,6 +13,10 @@
           <Property Name="ma_gio_hang" Type="int" Nullable="false" />
           <Property Name="ma_xe" Type="int" Nullable="false" />
           <Property Name="so_luong" Type="int" />
+          <Property Name="ten_xe" Type="nvarchar" MaxLength="255" />
+          <Property Name="hang_xe" Type="nvarchar" MaxLength="255" />
+          <Property Name="anh" Type="nvarchar" MaxLength="255" />
+          <Property Name="gia_ban" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="danh_muc_xe_hoi">
           <Key>
@@ -238,6 +242,10 @@
           <Property Name="so_luong" Type="Int32" />
           <NavigationProperty Name="gio_hang" Relationship="Self.FK__chi_tiet___ma_gi__1FCDBCEB" FromRole="chi_tiet_gio_hang" ToRole="gio_hang" />
           <NavigationProperty Name="danh_muc_xe_hoi" Relationship="Self.FK__chi_tiet___ma_xe__20C1E124" FromRole="chi_tiet_gio_hang" ToRole="danh_muc_xe_hoi" />
+          <Property Name="ten_xe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="hang_xe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="anh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="gia_ban" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="danh_muc_xe_hoi">
           <Key>
@@ -470,6 +478,10 @@
           <EntitySetMapping Name="chi_tiet_gio_hang">
             <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.chi_tiet_gio_hang">
               <MappingFragment StoreEntitySet="chi_tiet_gio_hang">
+                <ScalarProperty Name="gia_ban" ColumnName="gia_ban" />
+                <ScalarProperty Name="anh" ColumnName="anh" />
+                <ScalarProperty Name="hang_xe" ColumnName="hang_xe" />
+                <ScalarProperty Name="ten_xe" ColumnName="ten_xe" />
                 <ScalarProperty Name="ma_gio_hang" ColumnName="ma_gio_hang" />
                 <ScalarProperty Name="ma_xe" ColumnName="ma_xe" />
                 <ScalarProperty Name="so_luong" ColumnName="so_luong" />

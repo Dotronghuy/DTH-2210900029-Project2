@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using DOTRONGHUY_2210900029_K22CNTT1.Models;
+using Newtonsoft.Json;
 
 namespace DOTRONGHUY_2210900029_K22CNTT1.Controllers
 {
@@ -17,7 +14,12 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Controllers
         // GET: DTHdanh_muc_xe_hoi
         public ActionResult Index()
         {
-            return View(db.danh_muc_xe_hoi.ToList());
+            string jsonFilePath = Server.MapPath("~/App_Data/danh_muc_xe_hoi.json");
+            string jsonData = System.IO.File.ReadAllText(jsonFilePath);
+
+            var carCatalog = JsonConvert.DeserializeObject<List<xehoi>>(jsonData);
+
+            return View(carCatalog);
         }
 
         // GET: DTHdanh_muc_xe_hoi/Details/5

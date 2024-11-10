@@ -3,6 +3,19 @@ const openButton = document.querySelector(".open-item");
 const containerBodyAdmin = document.getElementById("content");
 const adminLink = document.getElementById("admin-link");
 
+window.onload = function () {
+    createSidebar();
+
+    const isAdmin = '@Session["IsAdmin"]' === 'True';
+
+    const adminLink = document.getElementById("user-link");
+
+    if (!isAdmin && adminLink) {
+        adminLink.style.display = "none";
+    }
+};
+
+
 function createSidebar() {
     const sidebarHTML = `
                 <div id="sidebar" class="sidebar">
@@ -12,7 +25,6 @@ function createSidebar() {
                     <a id="orders-link" href="/DTHdon_hang/Index">Đơn hàng</a>
                     <a id="catalog-link" href="/DTHdanh_muc_xe_hoi/Index">Chi tiết danh mục xe</a>
                     <a id="payment-link" href="/DTHthanh_toan/Index">Thanh toán</a>
-                    <a id="cart-link" href="/DTHgio_hang/Index">Chi tiết giỏ hàng</a>
                 </div>
             `;
     const sidebarContainer = document.createElement("div");
@@ -42,8 +54,6 @@ function createSidebar() {
     });
 }
 
-window.onload = function () {
-    createSidebar();
-};
+
 
 

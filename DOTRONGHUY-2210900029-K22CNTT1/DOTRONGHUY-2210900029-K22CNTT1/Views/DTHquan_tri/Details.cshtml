@@ -4,38 +4,44 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="text-center">Chi tiết tài khoản</h2>
 
-<div>
-    <h4>quan_tri</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.tai_khoan)
-        </dt>
+<div class="container-cart-products">
+    <div class="wrrapper-products-cart">
+        <!-- Tên tài khoản -->
+        <div class="name-products_cart">
+            <dt>
+                @Html.DisplayNameFor(model => model.tai_khoan)
+            </dt>
+            <dd>
+                <span>@Html.DisplayFor(model => model.tai_khoan)</span>
+            </dd>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.tai_khoan)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.mat_khau)
-        </dt>
+        <!-- Mật khẩu -->
+        <div class="price-products_cart">
+            <dt>
+                @Html.DisplayNameFor(model => model.mat_khau)
+            </dt>
+            <dd>
+                <span>@Html.DisplayFor(model => model.mat_khau)</span>
+            </dd>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.mat_khau)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.trang_thai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.trang_thai)
-        </dd>
-
-    </dl>
+        <!-- Trạng thái -->
+        <div class="quanlity-products_cart">
+            <dt>
+                @Html.DisplayNameFor(model => model.trang_thai)
+            </dt>
+            <dd>
+                <span>@(Model.trang_thai == 1 ? "Đang hoạt động" : "Không hoạt động")</span>
+            </dd>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.tai_khoan }) |
-    @Html.ActionLink("Back to List", "Index")
+
+<!-- Hành động -->
+<p class="text-center">
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.tai_khoan }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Trở lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
 </p>

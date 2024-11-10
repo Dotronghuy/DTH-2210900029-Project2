@@ -42,6 +42,8 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Controllers
             ViewBag.ma_kh = new SelectList(db.khach_hang, "ma_kh", "ho_ten");
             return View();
         }
+      
+
 
         // POST: DTHgio_hang/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

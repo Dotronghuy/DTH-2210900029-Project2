@@ -138,6 +138,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\chi_tiet_don_hang.cs" />
     <Compile Include="Models\chi_tiet_gio_hang.cs">
       <DependentUpon>DoTrongHuyModel1.tt</DependentUpon>
     </Compile>
@@ -181,21 +182,32 @@
     <Compile Include="Models\user_auth.cs">
       <DependentUpon>DoTrongHuyModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\xehoi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bmw.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\create.js" />
     <Content Include="Content\indexQT.js" />
     <Content Include="Content\main.js" />
+    <Content Include="Content\mainLayout.js" />
     <Content Include="Content\StyleSheet1.css" />
     <Content Include="Content\StyleSheet2.css" />
+    <Content Include="Content\StyleSheet3.css" />
+    <Content Include="Content\StyleSheet4.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="image\audi 6.jpg" />
+    <Content Include="image\audi 6.png" />
+    <Content Include="image\bmw-7.jpg" />
+    <Content Include="image\bmw-x1.jpg" />
+    <Content Include="image\bmw.jpg" />
     <Content Include="Models\DoTrongHuyModel1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DoTrongHuyModel1.Context.cs</LastGenOutput>
@@ -215,6 +227,7 @@
     <Content Include="Models\DoTrongHuyModel1.edmx.diagram">
       <DependentUpon>DoTrongHuyModel1.edmx</DependentUpon>
     </Content>
+    <Content Include="App_Data\danh_muc_xe_hoi.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -274,9 +287,7 @@
     <Content Include="Views\DTHthanh_toan\Index.cshtml" />
     <Content Include="Views\DTHquan_tri\Login.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

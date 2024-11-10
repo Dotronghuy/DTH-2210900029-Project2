@@ -8,6 +8,10 @@
     <Property Name="ma_gio_hang" Type="int" Nullable="false" />
     <Property Name="ma_xe" Type="int" Nullable="false" />
     <Property Name="so_luong" Type="int" />
+    <Property Name="ten_xe" Type="nvarchar" MaxLength="255" />
+    <Property Name="hang_xe" Type="nvarchar" MaxLength="255" />
+    <Property Name="anh" Type="nvarchar" MaxLength="255" />
+    <Property Name="gia_ban" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="danh_muc_xe_hoi">
     <Key>

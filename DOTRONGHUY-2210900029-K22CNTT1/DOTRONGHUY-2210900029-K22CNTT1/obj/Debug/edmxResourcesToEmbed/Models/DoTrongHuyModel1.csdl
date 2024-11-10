@@ -10,6 +10,10 @@
     <Property Name="so_luong" Type="Int32" />
     <NavigationProperty Name="gio_hang" Relationship="Self.FK__chi_tiet___ma_gi__1FCDBCEB" FromRole="chi_tiet_gio_hang" ToRole="gio_hang" />
     <NavigationProperty Name="danh_muc_xe_hoi" Relationship="Self.FK__chi_tiet___ma_xe__20C1E124" FromRole="chi_tiet_gio_hang" ToRole="danh_muc_xe_hoi" />
+    <Property Name="ten_xe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="hang_xe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="anh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="gia_ban" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="danh_muc_xe_hoi">
     <Key>

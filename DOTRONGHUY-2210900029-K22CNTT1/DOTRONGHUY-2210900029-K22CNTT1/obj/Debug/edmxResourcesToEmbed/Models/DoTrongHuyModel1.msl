@@ -4,6 +4,10 @@
     <EntitySetMapping Name="chi_tiet_gio_hang">
       <EntityTypeMapping TypeName="DOTRONGHUY_CNTT1_2210900029_Project2Model.chi_tiet_gio_hang">
         <MappingFragment StoreEntitySet="chi_tiet_gio_hang">
+          <ScalarProperty Name="gia_ban" ColumnName="gia_ban" />
+          <ScalarProperty Name="anh" ColumnName="anh" />
+          <ScalarProperty Name="hang_xe" ColumnName="hang_xe" />
+          <ScalarProperty Name="ten_xe" ColumnName="ten_xe" />
           <ScalarProperty Name="ma_gio_hang" ColumnName="ma_gio_hang" />
           <ScalarProperty Name="ma_xe" ColumnName="ma_xe" />
           <ScalarProperty Name="so_luong" ColumnName="so_luong" />

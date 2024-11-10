@@ -6,9 +6,7 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -32,62 +30,80 @@
         <th>
             @Html.DisplayNameFor(model => model.ngay_sinh)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngay_cap_nhat)
-        </th>
+        @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
+            {
+            <th>
+                @Html.DisplayNameFor(model => model.ngay_cap_nhat)
+            </th>
+            }
+
         <th>
             @Html.DisplayNameFor(model => model.gioi_tinh)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.tich_diem)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.trang_thai)
-        </th>
-        <th></th>
+        @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
+        {
+
+            <th>
+                @Html.DisplayNameFor(model => model.trang_thai)
+            </th>
+        }
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ho_ten)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tai_khoan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mat_khau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dia_chi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dien_thoai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngay_sinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngay_cap_nhat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.gioi_tinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tich_diem)
-        </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ho_ten)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tai_khoan)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.mat_khau)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.dia_chi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.dien_thoai)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ngay_sinh)
+    </td>
+         @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ngay_cap_nhat)
+                    </td>
+                }
+
+
+    <td>
+        @Html.DisplayFor(modelItem => item.gioi_tinh)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tich_diem)
+    </td>
+    @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
+    {
         <td>
             @Html.DisplayFor(modelItem => item.trang_thai)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ma_kh }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ma_kh }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ma_kh })
-        </td>
-    </tr>
+    }
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ma_kh }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ma_kh }) |
+        @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
+        {
+            @Html.ActionLink("Delete", "Delete", new { id = item.ma_kh })}
+    </td>
+</tr>
 }
 
 </table>

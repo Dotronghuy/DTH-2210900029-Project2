@@ -17,7 +17,8 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Controllers
         // GET: DTHquan_tri
         public ActionResult Index()
         {
-            return View(db.quan_tri.ToList());
+            var quanTris = db.quan_tri.ToList();
+            return View(quanTris);
         }
 
         // GET: DTHquan_tri/Details/5
@@ -144,7 +145,7 @@ namespace DOTRONGHUY_2210900029_K22CNTT1.Controllers
                     {
                         Session["TaiKhoan"] = userKhachHang.tai_khoan;
                         Session["IsAdmin"] = false; 
-                        return RedirectToAction("Index", "DTHkhach_hang");
+                        return RedirectToAction("Index", "DTHdanh_muc_xe_hoi");
                     }
                 }
                 else

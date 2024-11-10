@@ -4,52 +4,58 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 class="text-center">Chỉnh sửa tài khoản</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-left">
-        <div class="form-horizontal">
-            <h4>quan_tri</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.tai_khoan)
-
-            <div class="form-group">
+    <div class="container-cart-products">
+        <div class="wrrapper-products-cart">
+            <!-- Tên tài khoản -->
+            <div class="name-products_cart">
                 @Html.LabelFor(model => model.tai_khoan, htmlAttributes: new { @class = "form-label" })
-                <div>
-                    @Html.EditorFor(model => model.tai_khoan, new { htmlAttributes = new { @class = "form-input" } })
-                    @Html.ValidationMessageFor(model => model.tai_khoan, "", new { @class = "text-danger" })
+            </div>
+            <div class="list-product-cart default">
+                <div class="item-product-cart">
+                    <span>@Html.DisplayFor(model => model.tai_khoan)</span> <!-- Hiển thị tai_khoan -->
                 </div>
             </div>
 
-            <div class="form-group">
+            <!-- Mật khẩu -->
+            <div class="price-products_cart">
                 @Html.LabelFor(model => model.mat_khau, htmlAttributes: new { @class = "form-label" })
+            </div>
+            <div class="price-product">
                 <div>
                     @Html.EditorFor(model => model.mat_khau, new { htmlAttributes = new { @class = "form-input" } })
                     @Html.ValidationMessageFor(model => model.mat_khau, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
+            <!-- Trạng thái -->
+            <div class="quanlity-products_cart">
                 @Html.LabelFor(model => model.trang_thai, htmlAttributes: new { @class = "form-label" })
+            </div>
+            <div class="quanlity-product">
                 <div>
                     @Html.EditorFor(model => model.trang_thai, new { htmlAttributes = new { @class = "form-input" } })
                     @Html.ValidationMessageFor(model => model.trang_thai, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
-    
+    </div>
+
+    <!-- Submit form -->
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-success">Lưu thay đổi</button>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="text-center">
+    @Html.ActionLink("Trở lại danh sách", "Index", null, new { @class = "btn btn-primary" })
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-

@@ -1,0 +1,31 @@
+﻿[
+  {
+    "ma_xe": 1,
+    "ten_xe": "BMW 740i Pure Excellence 2023",
+    "hang_xe": "BMW",
+    "gia_ban": 6300000000,
+    "mo_ta": "BMW 740i Pure Excellence 2023",
+    "so_luong": 5,
+    "anh": "/image/bmw-7.jpg"
+  },
+  {
+    "ma_xe": 2,
+    "ten_xe": "BMW X1 sDrive18i xLine",
+    "hang_xe": "BMW",
+    "gia_ban": 1800000000,
+    "mo_ta": "BMW X1 sDrive18i xLiner",
+    "so_luong": 3,
+    "anh": "/image/bmw-x1.jpg"
+  },
+  {
+    "ma_xe": 3,
+    "ten_xe": "Audi A6 Sedan",
+    "hang_xe": "Audi",
+    "gia_ban": 2300000000,
+    "mo_ta": "Audi A6 Sedan",
+    "so_luong": 6,
+    "anh": "/image/audi 6.png"
+  }
+
+
+]
